@@ -15,17 +15,17 @@ public class WarehouseController {
     private final WarehouseRepository WarehouseRepository;                                                                //dzieki lombokowi da rade bez @Autowired
 
     @PostMapping("/warehouses")
-    Warehouse newWarehouse(@RequestBody Warehouse newWarehouse) {
+    public Warehouse newWarehouse(@RequestBody Warehouse newWarehouse) {
         return WarehouseRepository.save(newWarehouse);
     }
 
     @GetMapping("/warehouses")
-    List<Warehouse> listWarehouses() {
+    public List<Warehouse> listWarehouses() {
         return WarehouseRepository.findAll();
     }
 
     @DeleteMapping("/warehouses")
-    ResponseEntity deleteWarehouses(@RequestBody Long idWarehouse) {
+    public ResponseEntity deleteWarehouses(@RequestBody Long idWarehouse) {
         WarehouseRepository.deleteById(idWarehouse);
         return ResponseEntity.ok().build();
     }

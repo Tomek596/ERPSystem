@@ -15,17 +15,17 @@ public class ItemController {
     private final ItemRepository itemRepository;                                                                //dzieki lombokowi da rade bez @Autowired
 
     @PostMapping("/items")
-    Item newItem(@RequestBody Item newItem) {
+    public Item newItem(@RequestBody Item newItem) {
         return itemRepository.save(newItem);
     }
 
     @GetMapping("/items")
-    List<Item> listItems() {
+    public List<Item> listItems() {
         return itemRepository.findAll();
     }
 
     @DeleteMapping("/items")
-    ResponseEntity deleteItems(@RequestBody Long idItem) {
+    public ResponseEntity deleteItems(@RequestBody Long idItem) {
         itemRepository.deleteById(idItem);
         return ResponseEntity.ok().build();
     }

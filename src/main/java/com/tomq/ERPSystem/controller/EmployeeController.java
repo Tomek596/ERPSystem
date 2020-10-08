@@ -15,17 +15,17 @@ public class EmployeeController {
     private final EmployeeRepository employeeRepository;                                                                //dzieki lombokowi da rade bez @Autowired
 
     @PostMapping("/employees")
-    Employee newEmployee(@RequestBody Employee newEmployee){
+    public Employee newEmployee(@RequestBody Employee newEmployee){
         return employeeRepository.save(newEmployee);
     }
 
     @GetMapping("/employees")
-    List<Employee> listEmployees(){
+    public List<Employee> listEmployees(){
         return employeeRepository.findAll();
     }
 
     @DeleteMapping("/employees")
-    ResponseEntity deleteEmployee(@RequestBody Long idEmployee){
+    public ResponseEntity deleteEmployee(@RequestBody Long idEmployee){
         employeeRepository.deleteById(idEmployee);
         return ResponseEntity.ok().build();
     }
