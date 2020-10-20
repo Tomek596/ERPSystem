@@ -1,5 +1,6 @@
 package com.tomq.ERPSystem.entity;
 
+import com.tomq.ERPSystem.dto.EmployeeDTO;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -9,7 +10,7 @@ import javax.persistence.*;
 public class Employee {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idEmployee;
 
     @Column
@@ -18,6 +19,17 @@ public class Employee {
     @Column
     private String lastName;
 
+    @Column
+    private String salary;
+
     @OneToOne(mappedBy = "employee")
     private Operator operator;
+
+    public static Employee of(EmployeeDTO dto) {
+        Employee employee = new Employee();
+        employee.setFirstName(dto.getFirstName());
+        employee.setLastName(dto.getLastName());
+        employee.setSalary(dto.getSalary());
+        return employee;
+    }
 }
